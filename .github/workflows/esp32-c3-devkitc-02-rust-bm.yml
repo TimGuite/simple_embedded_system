@@ -38,7 +38,6 @@ jobs:
           components: rust-src, rustfmt, clippy
       - name: Enable caching
         uses: Swatinem/rust-cache@v2
-      - name: Move to directory
-        run: cd esp32-c3-devkitc-02-rust-bm
       - name: Run command
+        working-directory: esp32-c3-devkitc-02-rust-bm
         run: cargo ${{ matrix.action.command }} ${{ matrix.action.args }}
