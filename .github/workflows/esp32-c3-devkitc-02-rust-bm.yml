@@ -30,7 +30,10 @@ jobs:
           components: rust-src, rustfmt, clippy
       - name: Enable caching
         uses: Swatinem/rust-cache@v2
-      - name: Build
+      - name: Build Debug
+        working-directory: esp32-c3-devkitc-02-rust-bm
+        run: cargo build
+      - name: Build Release
         working-directory: esp32-c3-devkitc-02-rust-bm
         run: cargo build --release
       - name: Format
