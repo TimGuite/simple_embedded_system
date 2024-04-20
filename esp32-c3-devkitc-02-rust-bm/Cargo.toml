@@ -1,5 +1,5 @@
 [package]
-name = "esp32-c3-devkit-c-02-rust-bm"
+name = "esp32-c3-devkitc-02-rust-bm"
 version = "0.1.0"
 authors = ["Tim Guite <tim@magpieembedded.co.uk>"]
 edition = "2021"
