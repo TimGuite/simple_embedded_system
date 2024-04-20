@@ -1,34 +1,33 @@
 {
-    "version": 1,
-    "editor": "wokwi",
-    "author": "Tim Guite <tim@magpieembedded.co.uk>",
-    "parts": [
-        {
-            "type": "board-esp32-c3-devkitm-1",
-            "id": "esp",
-            "top": 0.59,
-            "left": 0.67,
-            "attrs": {
-                "flashSize": "16"
-            }
-        }
-    ],
-    "connections": [
-        [
-            "esp:TX",
-            "$serialMonitor:RX",
-            "",
-            []
-        ],
-        [
-            "esp:RX",
-            "$serialMonitor:TX",
-            "",
-            []
-        ]
-    ],
-    "serialMonitor": {
-        "display": "terminal",
-        "convertEol": true
+  "version": 1,
+  "editor": "wokwi",
+  "author": "Tim Guite <tim@magpieembedded.co.uk>",
+  "parts": [
+    {
+      "type": "board-esp32-c3-devkitm-1",
+      "id": "esp",
+      "top": 0.59,
+      "left": 0.67,
+      "attrs": {
+        "flashSize": "16"
+      }
+    },
+    {
+      "id": "led",
+      "type": "wokwi-led",
+      "left": 120,
+      "top": 0,
+      "attrs": { "color": "red" }
     }
+  ],
+  "connections": [
+    ["esp:TX", "$serialMonitor:RX", "", []],
+    ["esp:RX", "$serialMonitor:TX", "", []],
+    ["esp:GND.6", "led:C", "black", []],
+    ["esp:19", "led:A", "blue", []]
+  ],
+  "serialMonitor": {
+    "display": "terminal",
+    "convertEol": true
+  }
 }
