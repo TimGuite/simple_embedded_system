@@ -41,3 +41,12 @@ jobs:
       - name: Run command
         working-directory: esp32-c3-devkitc-02-rust-bm
         run: cargo ${{ matrix.action.command }} ${{ matrix.action.args }}
+
+      - name: Test with Wokwi
+        uses: wokwi/wokwi-ci-action@v1
+        working-directory: esp32-c3-devkitc-02-rust-bm/wokwi
+        with:
+          token: ${{ secrets.WOKWI_CLI_TOKEN }}
+          path: / # directory with wokwi.toml, relative to repo's root
+          timeout: 10000
+          scenario: 'test_scenario.yaml' # optional, see below
