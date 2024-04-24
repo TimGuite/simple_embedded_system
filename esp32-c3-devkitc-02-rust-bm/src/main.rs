@@ -2,7 +2,9 @@
 #![no_main]
 
 use esp_backtrace as _;
-use esp_hal::{clock::ClockControl, delay::Delay, gpio::IO, i2c::I2C, peripherals::Peripherals, prelude::*};
+use esp_hal::{
+    clock::ClockControl, delay::Delay, gpio::IO, i2c::I2C, peripherals::Peripherals, prelude::*,
+};
 
 extern crate alloc;
 use core::mem::MaybeUninit;
@@ -33,14 +35,7 @@ fn main() -> ! {
     let delay = Delay::new(&clocks);
 
     // Setup the I2C driver
-    let mut i2c = I2C::new(
-        peripherals.I2C0,
-        sda,
-        scl,
-        100.kHz(),
-        &clocks,
-        None
-    );
+    let mut i2c = I2C::new(peripherals.I2C0, sda, scl, 100.kHz(), &clocks, None);
 
     init_heap();
 
