@@ -18,7 +18,15 @@
       "left": 120,
       "top": 0,
       "attrs": { "color": "red" }
-    }
+    },
+    {
+      "id": "dht20-1",
+      "type": "chip-dht20",
+      "left": 200,
+      "top": 0,
+      "attrs": {}
+    },
+    { "type": "chip-bh1750", "id": "chip1", "top": 106.62, "left": -148.8, "attrs": {} }
   ],
   "connections": [
     ["esp:TX", "$serialMonitor:RX", "", []],
