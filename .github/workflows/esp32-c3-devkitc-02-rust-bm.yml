@@ -1,0 +1,51 @@
+name: ESP32-C3-DevKitC-02 Rust Bare Metal CI
+
+on: [push]
+
+# on:
+#   push:
+#     paths-ignore:
+#       - "**/README.md"
+#   pull_request:
+#   workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  rust-checks:
+    name: Rust Checks
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@v1
+        with:
+          target: riscv32imc-unknown-none-elf
+          toolchain: nightly
+          components: rust-src, rustfmt, clippy
+      - name: Enable caching
+        uses: Swatinem/rust-cache@v2
+      - name: Build Debug
+        working-directory: esp32-c3-devkitc-02-rust-bm
+        run: cargo build
+      - name: Build Release
+        working-directory: esp32-c3-devkitc-02-rust-bm
+        run: cargo build --release
+      - name: Format
+        working-directory: esp32-c3-devkitc-02-rust-bm
+        run: cargo fmt --all -- --check --color always
+      - name: Clippy
+        working-directory: esp32-c3-devkitc-02-rust-bm
+        run: cargo clippy --all-features --workspace -- -D warnings
+      - name: Test with Wokwi
+        uses: wokwi/wokwi-ci-action@v1
+        with:
+          token: ${{ secrets.WOKWI_CLI_TOKEN }}
+          path: esp32-c3-devkitc-02-rust-bm/wokwi # directory with wokwi.toml, relative to repo's root
+          timeout: 10000
+          scenario: 'test_scenario.yaml' # optional, see below
