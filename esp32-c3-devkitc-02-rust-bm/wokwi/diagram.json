@@ -13,26 +13,20 @@
       }
     },
     {
-      "id": "led",
-      "type": "wokwi-led",
-      "left": 120,
-      "top": 0,
-      "attrs": { "color": "red" }
-    },
-    {
-      "id": "dht20-1",
+      "id": "dht20",
       "type": "chip-dht20",
       "left": 200,
-      "top": 0,
+      "top": 100,
       "attrs": {}
-    },
-    { "type": "chip-bh1750", "id": "chip1", "top": 106.62, "left": -148.8, "attrs": {} }
+    }
   ],
   "connections": [
     ["esp:TX", "$serialMonitor:RX", "", []],
     ["esp:RX", "$serialMonitor:TX", "", []],
-    ["esp:GND.6", "led:C", "black", []],
-    ["esp:19", "led:A", "blue", []]
+    ["esp:3V3.1", "dht20:VDD", "red", []],
+    ["esp:GND.6", "dht20:GND", "black", []],
+    ["esp:19", "dht20:SDA", "green", []],
+    ["esp:18", "dht20:SCL", "blue", []]
   ],
   "serialMonitor": {
     "display": "terminal",
