@@ -41,6 +41,19 @@ fn main() -> ! {
 
     esp_println::logger::init_logger_from_env();
 
+    // Check that the sensor is set up correctly
+    i2c.write(0x38, &[0x71]).ok();
+    delay.delay_millis(80);
+
+    let mut status = [0; 1];
+    i2c.read(0x38, &mut status).ok();
+    log::debug!("{:?}", status);
+
+    if (status[0] & 0x18) != 0x18 {
+        log::info!("DHT20 needs to be reset...");
+        panic!();
+    }
+
     loop {
         i2c.write(0x38, &[0xAC, 0x33, 0]).ok();
         delay.delay_millis(80);
@@ -53,14 +66,14 @@ fn main() -> ! {
         raw += data[2] as u32;
         raw <<= 4;
         raw += (data[3] >> 4) as u32;
-        let hum = raw as f32 * 9.5367431640625e-5; // ==> / 1048576.0 * 100%;
+        let hum = raw as f32 * 9.536_743e-5; // ==> / 1048576.0 * 100%;
 
         let mut raw = (data[3] & 0x0F) as u32;
         raw <<= 8;
         raw += data[4] as u32;
         raw <<= 8;
         raw += data[5] as u32;
-        let temp = raw as f32 * 1.9073486328125e-4 - 50.0; //  ==> / 1048576.0 * 200 - 50;
+        let temp = raw as f32 * 1.907_348_6e-4 - 50.0; //  ==> / 1048576.0 * 200 - 50;
 
         log::info!("Temperature: {:.1} degC, Humidity: {:.1} %", temp, hum);
 
