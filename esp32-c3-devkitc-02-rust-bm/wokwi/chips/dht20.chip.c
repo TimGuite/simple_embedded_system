@@ -67,7 +67,7 @@ void calculate_data_bytes(chip_state_t * chip_state)
 
     chip_state->read_data[1] = (uint8_t)((humidity_signal >> 12) & 0xFF);
     chip_state->read_data[2] = (uint8_t)((humidity_signal >> 4 & 0xFF));
-    chip_state->read_data[3] = (uint8_t)((humidity_signal & 0x0F) + ((temperature_signal >> 16) & 0xFF));
+    chip_state->read_data[3] = (uint8_t)(((humidity_signal & 0x0F) << 4) + ((temperature_signal >> 16) & 0x0F));
     chip_state->read_data[4] = (uint8_t)((temperature_signal >> 8) & 0xFF);
     chip_state->read_data[5] = (uint8_t)(temperature_signal & 0xFF);
 
