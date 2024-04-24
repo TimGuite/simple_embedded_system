@@ -50,8 +50,9 @@ fn main() -> ! {
         i2c.write(0x38, &[0xAC, 0x33, 0]).ok();
         delay.delay_millis(80);
 
-        let mut data = [0; 8];
+        let mut data = [0; 7];
         i2c.read(0x38, &mut data).ok();
+        log::info!("{:?}", data);
 
         let mut raw = (data[1] as u32) << 8;
         raw += data[2] as u32;

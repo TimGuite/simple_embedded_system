@@ -1,6 +1,8 @@
 // Wokwi Custom Chip - For information and examples see:
 // https://link.wokwi.com/custom-chips-alpha
 
+// DHT20 Datasheet: https://cdn.sparkfun.com/assets/8/a/1/5/0/DHT20.pdf
+
 #include "wokwi-api.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -56,6 +58,30 @@ bool on_i2c_connect(void *user_data, uint32_t address, bool connect)
 uint8_t on_i2c_read(void *user_data)
 {
     printf("I2C Read\n");
+
+    chip_state_t * chip_state = user_data;
+
+    // If there is no measurement triggered then return 0xFF indicating the measurement
+    // is not ready - 7.4.3 of datasheet
+    if (false == chip_state->measurement_triggered)
+    {
+        return 0xFF;
+    }
+
+    switch (chip_state->read_byte_count)
+    {
+    case 0:
+    {
+        return 0x00;
+    }
+    case 1:
+    {
+        
+    }
+    default:
+        break;
+    }
+
     return 0;
 }
 
@@ -72,6 +98,7 @@ bool on_i2c_write(void *user_data, uint8_t data)
             {
                 chip_state->write_byte_count = 1;
             }
+            break;
         }
         case 1:
         {
@@ -81,6 +108,7 @@ bool on_i2c_write(void *user_data, uint8_t data)
             } else {
                 chip_state->write_byte_count = 0;
             }
+            break;
         }
         case 2:
         {
@@ -96,6 +124,7 @@ bool on_i2c_write(void *user_data, uint8_t data)
                     chip_state->humidity
                 );
             }
+            break;
             // Reset
             chip_state->write_byte_count = 0;
         }
