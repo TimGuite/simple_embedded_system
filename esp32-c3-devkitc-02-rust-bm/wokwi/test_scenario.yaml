@@ -1,7 +1,16 @@
-name: Blinky test
+name: DHT20 Sensor Test
 version: 1
 author: Tim Guite
 
 steps:
+  - delay: 1ms # Necessary delay to allow controls to work
+  - set-control:
+      part-id: dht20-sensor
+      control: temperature
+      value: 25
+  - set-control:
+      part-id: dht20-sensor
+      control: humidity
+      value: 50
   - wait-serial: 'INFO - Temperature: 25.0 degC, Humidity: 50.0 %'
     
