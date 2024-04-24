@@ -12,7 +12,7 @@
         "id": "temperature",
         "label": "Temperature (degC)",
         "type": "range",
-        "min": 0,
+        "min": -20,
         "max": 80,
         "step": 1
       },

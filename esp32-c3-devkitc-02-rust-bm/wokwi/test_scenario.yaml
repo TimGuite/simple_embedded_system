@@ -3,13 +3,5 @@ version: 1
 author: Tim Guite
 
 steps:
-  - wait-serial: 'LED On'
-  - expect-pin:
-      part-id: led
-      pin: A # Anode pin
-      value: 1
-  - wait-serial: 'LED Off'
-  - expect-pin:
-      part-id: led
-      pin: A # Anode pin
-      value: 0
+  - wait-serial: 'INFO - Temperature: 25.0 degC, Humidity: 50.0 %'
+    

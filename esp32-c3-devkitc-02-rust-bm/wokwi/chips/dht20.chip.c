@@ -62,8 +62,8 @@ void calculate_data_bytes(chip_state_t * chip_state)
 {
     chip_state->read_data[0] = 0x1C;
 
-    uint32_t humidity_signal = (uint32_t)((chip_state->humidity / 100.0) * 1048576.0);
-    uint32_t temperature_signal = (uint32_t)(((chip_state->temperature + 50) / 200.0) * 1048576.0);
+    uint32_t humidity_signal = (uint32_t)((chip_state->humidity / 100.0) * 1048575.0);
+    uint32_t temperature_signal = (uint32_t)(((chip_state->temperature + 50) / 200.0) * 1048575.0);
 
     chip_state->read_data[1] = (uint8_t)((humidity_signal >> 12) & 0xFF);
     chip_state->read_data[2] = (uint8_t)((humidity_signal >> 4 & 0xFF));
@@ -73,6 +73,13 @@ void calculate_data_bytes(chip_state_t * chip_state)
 
     const uint8_t crc_value = crc8(chip_state->read_data, 6, 0x31, 0xFF, false);
     chip_state->read_data[6] = crc_value;
+
+    printf("Measurement Bytes: ");
+    for (int i = 0; i < 7; i++)
+    {
+        printf("%02X ", chip_state->read_data[i]);
+    }
+    printf("\n");
 }
 
 static bool on_i2c_connect(void *user_data, uint32_t address, bool connect);
@@ -127,12 +134,6 @@ uint8_t on_i2c_read(void *user_data)
     {
         return 0xFF;
     }
-
-    for (int i = 0; i < 7; i++)
-    {
-        printf("%02X ", chip_state->read_data[i]);
-    }
-    printf("\n");
 
     uint8_t output_byte = 0x00;
 

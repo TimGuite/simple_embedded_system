@@ -52,7 +52,7 @@ fn main() -> ! {
 
         let mut data = [0; 7];
         i2c.read(0x38, &mut data).ok();
-        log::info!("{:?}", data);
+        log::debug!("{:?}", data);
 
         let mut raw = (data[1] as u32) << 8;
         raw += data[2] as u32;
@@ -67,7 +67,7 @@ fn main() -> ! {
         raw += data[5] as u32;
         let temp = raw as f32 * 1.9073486328125e-4 - 50.0; //  ==> / 1048576.0 * 200 - 50;
 
-        log::info!("Temperature: {:?} degC, Humidity: {:?} %", temp, hum);
+        log::info!("Temperature: {:.1} degC, Humidity: {:.1} %", temp, hum);
 
         delay.delay(1000.millis());
     }
