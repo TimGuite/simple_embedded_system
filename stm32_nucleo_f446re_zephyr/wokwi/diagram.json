@@ -1,0 +1,30 @@
+{
+    "version": 1,
+    "author": "Tim Guite <tim@magpieembedded.co.uk>",
+    "editor": "wokwi",
+    "parts": [
+      {
+        "type": "board-st-nucleo-c031c6",
+        "id": "nucleo",
+        "top": 0,
+        "left": 0,
+        "attrs": {}
+      },
+      {
+        "id": "dht20-sensor",
+        "type": "chip-dht20",
+        "left": 300,
+        "top": 150,
+        "attrs": {}
+      }
+    ],
+    "connections": [
+      [ "$serialMonitor:TX", "nucleo:PA3", "", [] ],
+      [ "$serialMonitor:RX", "nucleo:PA2", "", [] ],
+      ["nucleo:3V3.2", "dht20-sensor:VDD", "red", []],
+      ["nucleo:GND.5", "dht20-sensor:GND", "black", []],
+      ["nucleo:D14", "dht20-sensor:SDA", "green", []],
+      ["nucleo:D15", "dht20-sensor:SCL", "blue", []]
+    ],
+    "dependencies": {}
+  }

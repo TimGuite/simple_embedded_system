@@ -1,0 +1,9 @@
+[wokwi]
+version = 1
+gdbServerPort = 3333
+elf = "../build/zephyr/zephyr.elf"
+firmware = "../build/zephyr/zephyr.elf"
+
+[[chip]]
+name = "dht20"
+binary = "chips/dht20.chip.wasm"
