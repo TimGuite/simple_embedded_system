@@ -5,9 +5,8 @@
  */
 
 &i2c1 { /* SDA CN5.9=PB9, SCL CN5.10=PB8, ALERT CN5.1=D8=PA9 */
-	sht3xd@44 {
-		compatible = "sensirion,sht3xd";
-		reg = <0x44>;
-		alert-gpios = <&gpioa 9 GPIO_ACTIVE_HIGH>;
+	dht20@38 {
+		compatible = "aosong,dht20";
+		reg = <0x38>;
 	};
 };
