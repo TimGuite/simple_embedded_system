@@ -11,6 +11,7 @@
 
 int main(void)
 {
+	printf("Main function...\n");
 	const struct device *const dev = DEVICE_DT_GET_ONE(aosong_dht20);
 	int rc;
 
@@ -19,10 +20,15 @@ int main(void)
 		return 0;
 	}
 
+	printf("Device set up...\n");
+
 	while (true) {
 		struct sensor_value temp, hum;
 
 		rc = sensor_sample_fetch(dev);
+
+		printf("Sample fetched...\n");
+
 		if (rc == 0) {
 			rc = sensor_channel_get(dev, SENSOR_CHAN_AMBIENT_TEMP,
 						&temp);
