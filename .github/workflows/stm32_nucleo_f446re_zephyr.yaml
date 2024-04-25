@@ -7,47 +7,15 @@ jobs:
     runs-on: ubuntu-latest
     name: Build Test
     steps:
-      # To use this repository's private action,
-      # you must check out the repository
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Cache west modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-zephyr-modules
+        uses: actions/checkout@v3
+
+      - name: Setup Zephyr project
+        uses: zephyrproject-rtos/action-zephyr-setup@v1
         with:
-          path: |
-            modules/
-            tools/
-            zephyr/
-            bootloader/
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('stm32_nucleo_f446re_zephyr/west.yml') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-      - name: West Init
-        uses: 'docker://zmkfirmware/zephyr-west-action-arm:latest'
-        id: west-init
-        with:
-          args: 'init zephyr/'
-      - name: West Update
-        uses: 'docker://zmkfirmware/zephyr-west-action-arm:latest'
-        id: west-update
-        with:
-          args: 'update'
-      - name: West Config Zephyr Base
-        uses: 'docker://zmkfirmware/zephyr-west-action-arm:latest'
-        id: west-config
-        with:
-          args: 'config "--global zephyr.base-prefer configfile"'
-      - name: West Zephyr Export
-        uses: 'docker://zmkfirmware/zephyr-west-action-arm:latest'
-        id: west-zephyr-export
-        with:
-          args: 'zephyr-export'
-      - name: West Build
-        uses: 'docker://zmkfirmware/zephyr-west-action-arm:latest'
-        id: west-build
-        with:
-          args: 'build "-s stm32_nucleo_f446re_zephyr -b nucleo_f446re"'
+          app-path: stm32_nucleo_f4446re_zephyr
+          toolchains: arm-zephyr-eabi
+
+      - name: Build
+        run: |
+          west build -b nucleo_f446re stm32_nucleo_f4446re_zephyr
