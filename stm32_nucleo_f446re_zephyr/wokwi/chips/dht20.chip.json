@@ -1,0 +1,28 @@
+{
+    "name": "dht20",
+    "author": "Tim Guite",
+    "pins": [   
+        "VDD",
+        "SDA",
+        "GND",
+        "SCL"
+    ],
+    "controls": [
+      {
+        "id": "temperature",
+        "label": "Temperature (degC)",
+        "type": "range",
+        "min": -20,
+        "max": 80,
+        "step": 1
+      },
+      {
+        "id": "humidity",
+        "label": "Relative Humidity (%)",
+        "type": "range",
+        "min": 0,
+        "max": 100,
+        "step": 1
+      }
+    ]
+  }
