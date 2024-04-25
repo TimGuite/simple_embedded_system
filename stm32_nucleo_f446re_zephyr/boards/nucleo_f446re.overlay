@@ -8,5 +8,6 @@
 	dht20@38 {
 		compatible = "aosong,dht20";
 		reg = <0x38>;
+		label = "my_dht20";
 	};
 };

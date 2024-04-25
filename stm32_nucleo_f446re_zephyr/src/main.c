@@ -25,6 +25,8 @@ int main(void)
 	while (true) {
 		struct sensor_value temp, hum;
 
+		printf("Fetching sample...\n");
+
 		rc = sensor_sample_fetch(dev);
 
 		printf("Sample fetched...\n");
