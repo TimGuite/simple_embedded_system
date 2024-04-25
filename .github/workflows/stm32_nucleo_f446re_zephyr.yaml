@@ -13,9 +13,9 @@ jobs:
       - name: Setup Zephyr project
         uses: zephyrproject-rtos/action-zephyr-setup@v1
         with:
-          app-path: stm32_nucleo_f4446re_zephyr
+          app-path: stm32_nucleo_f446re_zephyr
           toolchains: arm-zephyr-eabi
 
       - name: Build
         run: |
-          west build -b nucleo_f446re stm32_nucleo_f4446re_zephyr
+          west build -b nucleo_f446re stm32_nucleo_f446re_zephyr/
