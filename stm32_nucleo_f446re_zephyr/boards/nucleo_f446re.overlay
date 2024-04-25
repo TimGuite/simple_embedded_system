@@ -5,9 +5,9 @@
  */
 
 &i2c1 { /* SDA CN5.9=PB9, SCL CN5.10=PB8, ALERT CN5.1=D8=PA9 */
-	dht20@38 {
+	/*dht20@38 {
 		compatible = "aosong,dht20";
 		reg = <0x38>;
 		label = "my_dht20";
-	};
+	};*/
 };
