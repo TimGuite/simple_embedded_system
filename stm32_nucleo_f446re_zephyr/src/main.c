@@ -9,6 +9,7 @@
 #include <zephyr/drivers/sensor.h>
 #include <zephyr/drivers/i2c.h>
 #include <stdio.h>
+#include <stdint.h>
 
 int main(void)
 {
@@ -35,6 +36,23 @@ int main(void)
 	{
 		printf("Status good\n");
 	}
+
+	// Convert measurements
+	uint32_t raw = rcv_bytes[1] << 8;
+	raw += rcv_bytes[2];
+	raw <<= 4;
+	raw += (rcv_bytes[3] >> 4);
+	double humidity = ((double)raw) * 9.536743e-5;
+
+	raw = 0;
+	raw = rcv_bytes[3] & 0x0F;
+	raw <<= 8;
+	raw += rcv_bytes[4];
+	raw <<= 8;
+	raw += rcv_bytes[5];
+	double temperature = (((double)raw) * 1.9073486e-4) - 50;
+
+	printf("Temperature: %.1f degC, Humidity: %.1f %%", temperature, humidity);
 
 	return 0;
 }
