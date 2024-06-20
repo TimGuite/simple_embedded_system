@@ -3,7 +3,8 @@
 
 use esp_backtrace as _;
 use esp_hal::{
-    clock::ClockControl, delay::Delay, gpio::IO, i2c::I2C, peripherals::Peripherals, prelude::*,
+    clock::ClockControl, delay::Delay, gpio::Io, i2c::I2C, peripherals::Peripherals, prelude::*,
+    system::SystemControl,
 };
 
 extern crate alloc;
@@ -24,10 +25,10 @@ fn init_heap() {
 #[entry]
 fn main() -> ! {
     let peripherals = Peripherals::take();
-    let system = peripherals.SYSTEM.split();
+    let system = SystemControl::new(peripherals.SYSTEM);
 
     // Set up GPIO 19 and 18 for I2C1
-    let io = IO::new(peripherals.GPIO, peripherals.IO_MUX);
+    let io = Io::new(peripherals.GPIO, peripherals.IO_MUX);
     let sda = io.pins.gpio19;
     let scl = io.pins.gpio18;
 
