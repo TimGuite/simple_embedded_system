@@ -188,9 +188,9 @@ checksum = "5443807d6dff69373d433ab9ef5378ad8df50ca6298caf15de6e52e24aaf54d5"
 
 [[package]]
 name = "esp-alloc"
-version = "0.3.0"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "83792eb7261a375bb838679fea2b45654b8f4a48da6bef10a96da5054aa81c7d"
+checksum = "e44c0b0c0416865313f3fcb6c00f7bc8ecebef30459bec74dc272eb12e465e3f"
 dependencies = [
  "critical-section",
  "linked_list_allocator",
@@ -198,11 +198,13 @@ dependencies = [
 
 [[package]]
 name = "esp-backtrace"
-version = "0.11.1"
+version = "0.12.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dda6c53c50ed96cce44e8565bd7659f8884d55bac3262184c3a77f748553e3ff"
+checksum = "d5b1720f2275eb87dbde9607cb2ab6a10894a4502045c0924c0f265aaceb3118"
 dependencies = [
+ "esp-build",
  "esp-println",
+ "rustversion",
 ]
 
 [[package]]
@@ -544,9 +546,9 @@ dependencies = [
 
 [[package]]
 name = "rustversion"
-version = "1.0.15"
+version = "1.0.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "80af6f9131f277a45a3fba6ce8e2258037bb0477a67e610d3c1fe046ab31de47"
+checksum = "955d28af4278de8121b7ebeb796b6a45735dc01436d898801014aced2773a3d6"
 
 [[package]]
 name = "serde"
