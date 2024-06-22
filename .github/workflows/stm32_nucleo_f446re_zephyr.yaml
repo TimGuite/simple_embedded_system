@@ -25,6 +25,6 @@ jobs:
       #   run: |
       #     west build -p -b nucleo_c031c6 stm32_nucleo_f446re_zephyr/
         
-      - name: Build Nordic 52840 DK
-        run: |
-          west build -p -b nrf52840dk_nrf52840 stm32_nucleo_f446re_zephyr/
+      # - name: Build Nordic 52840 DK
+      #   run: |
+      #     west build -p -b nrf52840dk_nrf52840 stm32_nucleo_f446re_zephyr/
