@@ -15,10 +15,15 @@ jobs:
         with:
           app-path: stm32_nucleo_f446re_zephyr
           toolchains: arm-zephyr-eabi
+          sdk-version: 0.16.5
 
       - name: Build Nucleo F446RE
         run: |
           west build -p -b nucleo_f446re stm32_nucleo_f446re_zephyr/
+          
+      - name: Build Nucleo C031C6
+        run: |
+          west build -p -b nucleo_c031c6 stm32_nucleo_f446re_zephyr/
         
       - name: Build Nordic 52840 DK
         run: |
