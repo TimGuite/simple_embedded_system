@@ -38,6 +38,7 @@ Therefore, each implementation of the **Simple Embedded System** must contain:
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
 | ESP32 Rust Baremetal  | Embedded Rust | ESP32C3 DevkitC | ✅ Wokwi | |
 | STM32 Zephyr Base  | Zephyr | Nucleo-F446RE  | ❌ | |
+| MicroPython ESP32 | MicroPython | ESP32C3 DevkitC | ✅ Pytest | |
 
 # License
 
