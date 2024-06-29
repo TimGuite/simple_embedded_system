@@ -1,0 +1,35 @@
+name: STM32 Nucleo F446RE Zephyr CI Build
+
+on: 
+  push:
+    paths:
+      - 'stm32_nucleo_f446re_zephyr/**'
+      - '.github/workflows/stm32_nucleo_f446re_zephyr.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build Test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Zephyr project
+        uses: zephyrproject-rtos/action-zephyr-setup@v1
+        with:
+          app-path: stm32_nucleo_f446re_zephyr
+          toolchains: arm-zephyr-eabi
+          sdk-version: 0.16.5
+
+      - name: Build Nucleo F446RE
+        run: |
+          west build -p -b nucleo_f446re stm32_nucleo_f446re_zephyr/
+          
+      # - name: Build Nucleo C031C6
+      #   run: |
+      #     west build -p -b nucleo_c031c6 stm32_nucleo_f446re_zephyr/
+        
+      # - name: Build Nordic 52840 DK
+      #   run: |
+      #     echo ${GITHUB_WORKFLOW} {$GITHUB_ACTION_PATH} |
+      #     west build -p -b nrf52840dk_nrf52840 stm32_nucleo_f446re_zephyr/

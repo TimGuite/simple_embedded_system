@@ -1,6 +1,10 @@
 name: ESP32-C3-DevKitC-02 Rust Bare Metal CI
 
-on: [push]
+on: 
+  push:
+    paths:
+      - 'esp32-c3-devkitc-02-rust-bm/**'
+      - '.github/workflows/esp32-c3-devkitc-02-rust-bm.yml'
 
 # on:
 #   push:
