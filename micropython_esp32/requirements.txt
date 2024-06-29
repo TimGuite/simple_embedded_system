@@ -1,0 +1,4 @@
+esptool==4.7.0
+littlefs-python==0.10.3
+mpremote==1.23.0
+pytest==8.2.2

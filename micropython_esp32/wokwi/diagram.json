@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "editor": "wokwi",
+  "author": "Tim Guite <tim@magpieembedded.co.uk>",
+  "parts": [
+    {
+      "type": "board-esp32-c3-devkitm-1",
+      "id": "esp",
+      "top": 0.59,
+      "left": 0.67,
+      "attrs": {
+        "flashSize": "16"
+      }
+    },
+    {
+      "id": "dht20-sensor",
+      "type": "chip-dht20",
+      "left": 200,
+      "top": 100,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    ["esp:TX", "$serialMonitor:RX", "", []],
+    ["esp:RX", "$serialMonitor:TX", "", []],
+    ["esp:3V3.1", "dht20-sensor:VDD", "red", []],
+    ["esp:GND.6", "dht20-sensor:GND", "black", []],
+    ["esp:19", "dht20-sensor:SDA", "green", []],
+    ["esp:18", "dht20-sensor:SCL", "blue", []]
+  ],
+  "serialMonitor": {
+    "display": "terminal",
+    "convertEol": true
+  }
+}
