@@ -6,19 +6,14 @@ import os
 from littlefs import LittleFS
 import subprocess
 
-workspace_dir = './'
-
-#files = os.listdir(f"{workspace_dir}/src")
-
-
-output_image = f"{workspace_dir}/littlefs.img"
+output_image = "build/littlefs.img"
 
 lfs = LittleFS(block_size=4096, block_count=512, prog_size=256)
 
-#for filename in files:
-with open(f"{workspace_dir}/main.py", 'rb') as src_file:
-    with  lfs.open("main.py", 'wb') as lfs_file:
-        lfs_file.write(src_file.read())
+for filename in ["main.py", "driver_dht20.py"]:
+    with open(filename, 'rb') as src_file:
+        with  lfs.open(filename, 'wb') as lfs_file:
+            lfs_file.write(src_file.read())
 
 with open(output_image, 'wb') as fh:
     fh.write(lfs.context.buffer)
