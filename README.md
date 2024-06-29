@@ -34,11 +34,11 @@ Therefore, each implementation of the **Simple Embedded System** must contain:
 
 # Implementations
 
-| Name  | Software | Hardware | Testing | Notes |
+| Name  | Software | Hardware | Testing | Simulation |
 | :-------------: | :-------------: | :-------------: | :-------------: | :-------------: |
-| ESP32 Rust Baremetal  | Embedded Rust | ESP32C3 DevkitC | ✅ Wokwi | |
-| STM32 Zephyr Base  | Zephyr | Nucleo-F446RE  | ❌ | |
-| MicroPython ESP32 | MicroPython | ESP32C3 DevkitC | ✅ Pytest | |
+| ESP32 Rust Baremetal  | Embedded Rust | ESP32C3 DevkitC | ✅ Wokwi CI | ✅ Wokwi CI |
+| STM32 Zephyr Base  | Zephyr | Nucleo-F446RE  | ❌ | ❌ |
+| MicroPython ESP32 | MicroPython | ESP32C3 DevkitC | ✅ Pytest | ✅ Wokwi |
 
 # License
 
