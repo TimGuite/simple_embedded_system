@@ -1,0 +1,2 @@
+esptool==4.7.0
+mpremote==1.23.0
