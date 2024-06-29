@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'stm32_nucleo_f446re_zephyr/**'
-      - '.github/workflows/stm32_nucleo_f446re_zephyr.yaml'
+      - '.github/workflows/stm32_nucleo_f446re_zephyr.yml'
 
 jobs:
   build:
@@ -31,4 +31,5 @@ jobs:
         
       - name: Build Nordic 52840 DK
         run: |
+          echo ${GITHUB_WORKFLOW} {$GITHUB_ACTION_PATH} |
           west build -p -b nrf52840dk_nrf52840 stm32_nucleo_f446re_zephyr/
