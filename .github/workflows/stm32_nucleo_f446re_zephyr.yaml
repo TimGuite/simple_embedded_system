@@ -3,7 +3,7 @@ name: STM32 Nucleo F446RE Zephyr CI Build
 on: 
   push:
     paths:
-      stm32_nucleo_f446re_zephyr/*
+      - 'stm32_nucleo_f446re_zephyr/**'
 
 jobs:
   build:
