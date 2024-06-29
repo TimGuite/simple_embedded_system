@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'stm32_nucleo_f446re_zephyr/**'
+      - '.github/workflows/stm32_nucleo_f446re_zephyr.yaml'
 
 jobs:
   build:

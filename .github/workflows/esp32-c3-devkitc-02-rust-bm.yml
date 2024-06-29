@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'esp32-c3-devkitc-02-rust-bm/**'
+      - '.github/workflows/esp32-c3-devkitc-02-rust-bm.yml'
 
 # on:
 #   push:
